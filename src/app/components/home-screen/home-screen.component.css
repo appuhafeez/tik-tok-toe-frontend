@@ -1,0 +1,18 @@
+span{
+    border-radius: 5px;
+    border: 10px;
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+}
+.game-heading{
+    text-align: center;
+}
+
+.game-code{
+    text-align: center;
+}
+.start-game{
+    align-items: center;
+    text-align: center;
+}

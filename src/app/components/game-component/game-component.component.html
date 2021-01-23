@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="single-row"> <h1>Your symbol is <img height="30" src="{{gamePlayerIcon}}"></h1></div>
+    <div class="single-row"> <h1>Its <img height="30" src="{{currentPlayerIcon}}"> turn</h1> </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <mat-grid-list cols="3" rowHeight="3:3" [gutterSize]="'10px'">
+                <div (click)="processClick('0')"><mat-grid-tile><img src="{{gameResponse.gameData.spacesOccupiedPlayerIcons[0]}}"> </mat-grid-tile></div>
+                <div (click)="processClick('1')"><mat-grid-tile><img src="{{gameResponse.gameData.spacesOccupiedPlayerIcons[1]}}"> </mat-grid-tile></div>
+                <div (click)="processClick('2')"><mat-grid-tile><img src="{{gameResponse.gameData.spacesOccupiedPlayerIcons[2]}}"> </mat-grid-tile></div>
+                <div (click)="processClick('3')"><mat-grid-tile><img src="{{gameResponse.gameData.spacesOccupiedPlayerIcons[3]}}"> </mat-grid-tile></div>
+                <div (click)="processClick('4')"><mat-grid-tile><img src="{{gameResponse.gameData.spacesOccupiedPlayerIcons[4]}}"> </mat-grid-tile></div>
+                <div (click)="processClick('5')"><mat-grid-tile><img src="{{gameResponse.gameData.spacesOccupiedPlayerIcons[5]}}"> </mat-grid-tile></div>
+                <div (click)="processClick('6')"><mat-grid-tile><img src="{{gameResponse.gameData.spacesOccupiedPlayerIcons[6]}}"> </mat-grid-tile></div>
+                <div (click)="processClick('7')"><mat-grid-tile><img src="{{gameResponse.gameData.spacesOccupiedPlayerIcons[7]}}"> </mat-grid-tile></div>
+                <div (click)="processClick('8')"><mat-grid-tile><img src="{{gameResponse.gameData.spacesOccupiedPlayerIcons[8]}}"> </mat-grid-tile></div>
+            </mat-grid-list>
+            <button mat-stroked-button color="accent" class="button-center" (click)="navigateToHome()">Reset game</button>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

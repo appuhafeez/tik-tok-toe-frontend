@@ -1,0 +1,16 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+span{
+    border-radius: 5px;
+    border: 10px;
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+}
+.heading-tik-tok{
+  margin: auto;
+  width: 50%;
+  border: 3px;
+  padding: 10px;
+}
