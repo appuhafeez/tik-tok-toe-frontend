@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  serverUrl: 'http://10.0.0.11:8080',
+  serverUrl: 'https://tik-tok-toe-backend.herokuapp.com',
   clientUrl: 'http://appuhafeez.github.io/tik-tok-toe-fe/',
   enableIvy:false,
   gitHubUrl:'https://github.com/appuhafeez',
