@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://10.0.0.11:8080',
+  serverUrl: 'http://localhost:8080',
   clientUrl: 'http://appuhafeez.github.io/tik-tok-toe-fe/',
   enableIvy:false,
   gitHubUrl:'https://github.com/appuhafeez',

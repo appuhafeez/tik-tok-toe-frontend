@@ -85,10 +85,15 @@ export class GameComponentComponent implements OnInit {
         this.decideCurrentPlayer();
         if (this.gameResponse.gameCompleted) {
           console.log("Game completed::");
-          if(this.gamePlayerIcon === this.gameResponse.whoWonGame){
-            this.openSuccessDailogue("Congratulations you won the game", this.gameResponse.whoWonGame);
+          if(this.gameResponse.tie){
+            console.log("tie ");
+            this.openSuccessDailogue("This game is a tie no one won",undefined);
           }else{
-            this.openSuccessDailogue("Better luck next time you lost the game", this.gameResponse.whoWonGame);
+            if(this.gamePlayerIcon === this.gameResponse.whoWonGame){
+              this.openSuccessDailogue("Congratulations you won the game", this.gameResponse.whoWonGame);
+            }else{
+              this.openSuccessDailogue("Better luck next time you lost the game", this.gameResponse.whoWonGame);
+            }
           }
           this.storageService.clearStore();
         }
@@ -123,7 +128,7 @@ export class GameComponentComponent implements OnInit {
           if (response.status === 200) {
             console.log("moved completed");
           } else {
-            // TODO for failure
+            this.processClick(position);
           }
         });
       } else {

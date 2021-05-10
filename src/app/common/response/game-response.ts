@@ -7,5 +7,6 @@ export class GameResponse {
     gameData: GameData;
     gameCompleted: boolean;
     errorMessage: string;
+    tie: boolean;
 
 }
