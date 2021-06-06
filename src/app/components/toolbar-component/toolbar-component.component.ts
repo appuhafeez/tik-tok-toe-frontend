@@ -6,6 +6,7 @@ import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
+import { LoginServiceService } from '../../services/login-service/login-service.service';
 
 
 @Component({
@@ -14,6 +15,8 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
   styleUrls: ['./toolbar-component.component.css']
 })
 export class ToolbarComponentComponent implements OnInit {
+
+  isAuthenticated:boolean;
 
   faGithub = faGithub;
   faInstagram = faInstagram;
@@ -25,7 +28,8 @@ export class ToolbarComponentComponent implements OnInit {
   linkedInUrl: string = environment.linkedInUrl;
   twitterUrl: string = environment.twitterUrl;
   isSmallScreen: boolean
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer,
+    private loginService: LoginServiceService) { }
 
   ngOnInit(): void {
     if(window.screen.width <= 420){
@@ -34,6 +38,11 @@ export class ToolbarComponentComponent implements OnInit {
       this.isSmallScreen = false;
     }
     console.log(`current screen size: ${window.screen.width} so ${this.isSmallScreen}`);
+
+    this.loginService.isAuthenticated.subscribe(
+      data=> this.isAuthenticated=data
+    );
+
   }
 
   sanitize(url: string) {
@@ -50,5 +59,10 @@ export class ToolbarComponentComponent implements OnInit {
   }
   sanitizeInstagramUrl(){
     return this.sanitize(`${this.instagramUrl}`);
+  }
+
+  logout(){
+    console.log("clicked logout");
+    this.loginService.pushAuthToken(false);
   }
 }

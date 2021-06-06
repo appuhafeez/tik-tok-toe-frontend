@@ -22,11 +22,16 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginRegisterComponent } from './components/login-register/login-register.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeScreenComponent},
   {path: 'game/:code',component: GameComponentComponent},
   {path: 'game',component: GameComponentComponent},
+  {path: "login", component: LoginRegisterComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
@@ -36,7 +41,8 @@ const routes: Routes = [
     AppComponent,
     ToolbarComponentComponent,
     GameComponentComponent,
-    HomeScreenComponent
+    HomeScreenComponent,
+    LoginRegisterComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -55,7 +61,10 @@ const routes: Routes = [
     FormsModule,
     ClipboardModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule,
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [WebsocketServiceService],
   bootstrap: [AppComponent]

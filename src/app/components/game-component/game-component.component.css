@@ -52,3 +52,7 @@ mat-grid-tile {
     align-items: center;
     text-align: center;
 }
+
+.welcome-heading{
+    text-align: center;
+}

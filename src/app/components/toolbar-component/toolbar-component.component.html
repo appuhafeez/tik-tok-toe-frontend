@@ -2,6 +2,11 @@
 	<mat-toolbar color="primary">
 	<p class="heading-tik-tok">Tik Tok Toe Game</p>
 		<span class="example-spacer"></span>
+        <div *ngIf="!isAuthenticated" >  <button mat-raised-button class="button-center" routerLink="/login" >Login/Register</button></div>
+        <div *ngIf="isAuthenticated" >  
+            <button mat-raised-button class="button-center" routerLink="/login" >History</button>
+            <button mat-raised-button class="button-center" onclick="logout()" >Logout</button>
+        </div>
      <div *ngIf="isSmallScreen">
         <button mat-button [matMenuTriggerFor]="menu"><span><fa-icon [icon]="faEllipsisV"></fa-icon></span></button>
         <mat-menu #menu="matMenu">

@@ -24,6 +24,7 @@ const navigator = window.navigator as any;
 })
 export class HomeScreenComponent implements OnInit {
 
+  loginMessage: string="";
   gameCode: Number = 0;
   gameResponse: GameResponse;
   gameCodeEnteredModel: string;
@@ -43,6 +44,7 @@ export class HomeScreenComponent implements OnInit {
     private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    this.addLoginMessage();
     this.setIsMobile();
     if (this.storageService.checkKeyExistedOrNot("gameCode") && this.storageService.getDataFromStorage("gameCode") != undefined) {
       this.gameBackendService.checkForGameCodeAvailability(Number(this.storageService.getDataFromStorage("gameCode"))).subscribe(
@@ -67,6 +69,14 @@ export class HomeScreenComponent implements OnInit {
       this.createNewGame();
     }
   }
+
+  addLoginMessage(){
+    this.loginMessage="";
+    if(this.storageService.checkKeyExistedOrNot("user")){
+      this.loginMessage=`Welcome ${this.storageService.getDataFromStorage("user")}`;
+    }
+  }
+
   setIsMobile() {
     if (this.platform.ANDROID || this.platform.IOS || this.isMobile) {
       this.isMobile = true;

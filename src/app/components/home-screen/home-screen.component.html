@@ -1,4 +1,5 @@
 <div class="container">
+    <h3 class="game-heading">{{loginMessage}}</h3>
     <h3 class="game-heading">Share this gamecode to your friend to start the game </h3>
     <h2 class="game-code">{{this.gameCode}} <a ><span (click)="copyToClipBoard()"><fa-icon [icon]="faCopy"></fa-icon></span></a> <a><span *ngIf="isMobile"><strong (click)="shareByMobile()"><fa-icon [icon]="faShare"></fa-icon></strong></span></a> <a [href]=sanitizeWhatsApp() target="_blank" style="color: white;"> <span><strong><fa-icon [icon]="faWhatsapp"></fa-icon></strong></span></a> </h2>
     <mat-divider></mat-divider>

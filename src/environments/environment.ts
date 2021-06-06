@@ -10,7 +10,8 @@ export const environment = {
   gitHubUrl:'https://github.com/appuhafeez',
   instagramUrl:'https://www.instagram.com/appu_hafeez/',
   linkedInUrl:'https://www.linkedin.com/in/hafeez-shaik-540890122/',
-  twitterUrl: 'https://twitter.com/appuhafeez'
+  twitterUrl: 'https://twitter.com/appuhafeez',
+  loginServerUrl:'http://localhost:8080/tictoctoe-auth-server'
 };
 
 /*

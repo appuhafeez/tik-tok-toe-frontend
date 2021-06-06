@@ -4,6 +4,7 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
+            <h3 class="welcome-heading"> {{greetUser}} </h3>
             <mat-grid-list cols="3" rowHeight="3:3" [gutterSize]="'10px'">
                 <div (click)="processClick('0')"><mat-grid-tile><img src="{{gameResponse.gameData.spacesOccupiedPlayerIcons[0]}}"> </mat-grid-tile></div>
                 <div (click)="processClick('1')"><mat-grid-tile><img src="{{gameResponse.gameData.spacesOccupiedPlayerIcons[1]}}"> </mat-grid-tile></div>

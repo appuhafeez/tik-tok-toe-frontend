@@ -1,0 +1,146 @@
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Login">
+                <mat-card>
+                    <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmitLogin()">
+                        <div formGroupName="loginDetails" class="form-area">
+                            <div class="row">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Enter Username/email</mat-label>
+                                    <input formControlName="username" type="text" matInput>
+                                </mat-form-field>
+                                <div *ngIf="username.invalid && (username.dirty || username.touched)"
+                                    class="alert alert-danger mt-1">
+                                    <div *ngIf="username.errors.required || username.errors.notOnlyWhiteSpace">
+                                        User Name is required
+                                    </div>
+
+                                    <div *ngIf="username.errors.minlength">
+                                        User Name must be at least 2 char long
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Enter Password</mat-label>
+                                    <input formControlName="password" type="text" matInput
+                                        [type]="hide ? 'password' : 'text'">
+                                    <button mat-icon-button matSuffix (click)="hide = !hide"
+                                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                                <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                                    class="alert alert-danger mt-1">
+                                    <div *ngIf="password.errors.required || password.errors.notOnlyWhiteSpace">
+                                        Password is required
+                                    </div>
+                                    <div *ngIf="password.errors.minlength">
+                                        Password must be at least 2 char long
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button mat-raised-button color="primary" type="submit" class="btn btn-info">Login</button>
+                        </div>
+                    </form>
+                </mat-card>
+            </mat-tab>
+            <mat-tab label="Register">
+                <mat-card>
+                    <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmitRegister()">
+                        <div formGroupName="registerDetails" class="form-area">
+                            <div *ngIf="registerError" class="row">
+                                <div  class="alert alert-danger mt-1">
+                                    {{registerErrorMessage}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Enter Username</mat-label>
+                                    <input formControlName="usernameRegister" type="text" matInput>
+                                </mat-form-field>
+                                <div *ngIf="usernameRegister.invalid && (usernameRegister.dirty || usernameRegister.touched)"
+                                    class="alert alert-danger mt-1">
+                                    <div
+                                        *ngIf="usernameRegister.errors.required || usernameRegister.errors.notOnlyWhiteSpace">
+                                        User Name is required
+                                    </div>
+
+                                    <div *ngIf="usernameRegister.errors.minlength">
+                                        User Name must be at least 2 char long
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Enter Password</mat-label>
+                                    <input formControlName="passwordRegister" type="text" matInput
+                                        [type]="hide ? 'password' : 'text'">
+                                    <button mat-icon-button matSuffix (click)="hide = !hide"
+                                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                                <div *ngIf="passwordRegister.invalid && (passwordRegister.dirty || passwordRegister.touched)"
+                                    class="alert alert-danger mt-1">
+                                    <div *ngIf="passwordRegister.errors.required || passwordRegister.errors.notOnlyWhiteSpace">
+                                        Password is required
+                                    </div>
+                                    <div *ngIf="passwordRegister.errors.minlength">
+                                        Password must be at least 2 char long
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Confirm Password</mat-label>
+                                    <input formControlName="confirmPasswordRegister" type="text" matInput
+                                        [type]="hide ? 'password' : 'text'">
+                                    <button mat-icon-button matSuffix (click)="hide = !hide"
+                                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                                <div *ngIf="confirmPasswordRegister.invalid && (confirmPasswordRegister.dirty || confirmPasswordRegister.touched)"
+                                    class="alert alert-danger mt-1">
+                                    <div *ngIf="confirmPasswordRegister.errors.required || confirmPasswordRegister.errors.notOnlyWhiteSpace">
+                                        Password is required
+                                    </div>
+                                    <div *ngIf="confirmPasswordRegister.errors.minlength">
+                                        Password must be at least 2 char long
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Enter Email</mat-label>
+                                    <input formControlName="emailRegister" type="text" matInput>
+                                </mat-form-field>
+                                <div *ngIf="emailRegister.invalid && (emailRegister.dirty || emailRegister.touched)"
+                                    class="alert alert-danger mt-1">
+                                    <div
+                                        *ngIf="emailRegister.errors.required || emailRegister.errors.notOnlyWhiteSpace">
+                                        Email is required
+                                    </div>
+
+                                    <div *ngIf="emailRegister.errors.minlength || emailRegister.errors.pattern">
+                                        Please enter valid email
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button mat-raised-button color="primary" type="submit" class="btn btn-info">Register</button>
+                        </div>
+                    </form>
+                </mat-card>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+    <div class="col-md-4"></div>
+</div>

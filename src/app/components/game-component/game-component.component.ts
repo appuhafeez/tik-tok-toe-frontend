@@ -25,7 +25,7 @@ export interface DialogData {
 })
 export class GameComponentComponent implements OnInit {
 
-
+  greetUser: string="";
   gameResponse: GameResponse;
 
   gameCode: string;
@@ -46,7 +46,7 @@ export class GameComponentComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-
+    this.addGreetUserMessage();
     this.route.paramMap.subscribe(() => {
       this.gameCode = this.storageService.getDataFromStorage("gameCode");
       if (this.gameCode === null || (this.gameCode != null && this.gameCode.trim().length === 0)) {
@@ -67,8 +67,15 @@ export class GameComponentComponent implements OnInit {
 
   }
 
+  addGreetUserMessage(){
+    this.greetUser="";
+    if(this.storageService.checkKeyExistedOrNot("user")){
+      this.greetUser=`Your playing as ${this.storageService.getDataFromStorage("user")}`;
+    }
+  }
+
   navigateToHome() {
-    this.storageService.clearStore();
+    //this.storageService.clearStore();
     this.router.navigateByUrl("/home");
   }
 

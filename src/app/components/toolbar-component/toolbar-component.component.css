@@ -14,3 +14,11 @@ span{
   border: 3px;
   padding: 10px;
 }
+
+.span-remove{
+  border-radius: 5px;
+  border: 10px;
+  padding: 10px;
+  width: 0px;
+  height: 0px;
+}
