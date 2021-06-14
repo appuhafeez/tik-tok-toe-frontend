@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs';
 import { GameResponse } from 'src/app/common/response/game-response';
@@ -12,6 +12,8 @@ import { GameMoveRequest } from '../../common/response/game-move-request'
 export class GameBackendService {
 
   private baseUrl = environment.serverUrl;
+
+  private historyUrl = environment.historyUrl;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -35,6 +37,12 @@ export class GameBackendService {
 
   startGame(gameCode: Number): Observable<HttpResponse<any>>{
     return this.httpClient.put<any>(`${this.baseUrl}/game/start/${gameCode}`,new Object(),{observe: 'response'}).pipe(
+      map(response => response)
+    );
+  }
+
+  getHistory(header: HttpHeaders): Observable<HttpResponse<any>>{
+    return this.httpClient.post<any>(`${this.historyUrl}/history/get`, new Object() ,{observe:'response', headers: header}).pipe(
       map(response => response)
     );
   }

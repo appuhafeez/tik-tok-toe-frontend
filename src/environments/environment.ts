@@ -4,14 +4,19 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://localhost:8080',
+  baseServerUrl:'http://localhost:8081/',
+  serverUrl: 'http://localhost:8081/game-backend',
+  webSocketServerUrl: 'http://localhost:8080/game-server',
   clientUrl: 'http://appuhafeez.github.io/tik-tok-toe-fe/',
   enableIvy:false,
   gitHubUrl:'https://github.com/appuhafeez',
   instagramUrl:'https://www.instagram.com/appu_hafeez/',
   linkedInUrl:'https://www.linkedin.com/in/hafeez-shaik-540890122/',
   twitterUrl: 'https://twitter.com/appuhafeez',
-  loginServerUrl:'http://localhost:8080/tictoctoe-auth-server'
+  loginServerUrl:'http://localhost:8081/oauth-server',
+  securedEndpoint:'http://localhost:8081/game-backend',
+  securedEndpoint2:'http://localhost:8081/game-history',
+  historyUrl:'http://localhost:8081/game-history'
 };
 
 /*

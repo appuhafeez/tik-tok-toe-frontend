@@ -7,6 +7,8 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 import { LoginServiceService } from '../../services/login-service/login-service.service';
+import { SessionStorageService } from 'src/app/services/storage-service/session-storage.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,7 +31,9 @@ export class ToolbarComponentComponent implements OnInit {
   twitterUrl: string = environment.twitterUrl;
   isSmallScreen: boolean
   constructor(private sanitizer: DomSanitizer,
-    private loginService: LoginServiceService) { }
+    private loginService: LoginServiceService,
+    private storageService: SessionStorageService,
+    private router: Router) { }
 
   ngOnInit(): void {
     if(window.screen.width <= 420){
@@ -63,6 +67,8 @@ export class ToolbarComponentComponent implements OnInit {
 
   logout(){
     console.log("clicked logout");
+    this.storageService.clearStore();
     this.loginService.pushAuthToken(false);
+    this.router.navigate(['/home']);
   }
 }

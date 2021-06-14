@@ -9,7 +9,7 @@ import { ToolbarComponentComponent } from './components/toolbar-component/toolba
 import { WebsocketServiceService } from './services/websocket-service/websocket-service.service';
 import { GameComponentComponent } from './components/game-component/game-component.component';
 import { HomeScreenComponent } from './components/home-screen/home-screen.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -25,13 +25,17 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthServiceService } from 'src/app/services/auth-service/auth-service.service'
+import { RouterAuthGaurdService } from 'src/app/services/auth-gaurd/router-auth-gaurd.service'
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
+import { HistoryScreenComponent } from './components/history-screen/history-screen.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeScreenComponent},
   {path: 'game/:code',component: GameComponentComponent},
   {path: 'game',component: GameComponentComponent},
   {path: "login", component: LoginRegisterComponent},
+  {path: "history", component: HistoryScreenComponent, canActivate: [RouterAuthGaurdService]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
@@ -42,7 +46,8 @@ const routes: Routes = [
     ToolbarComponentComponent,
     GameComponentComponent,
     HomeScreenComponent,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    HistoryScreenComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -66,7 +71,8 @@ const routes: Routes = [
     MatCardModule,
     ReactiveFormsModule
   ],
-  providers: [WebsocketServiceService],
+  providers: [WebsocketServiceService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthServiceService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

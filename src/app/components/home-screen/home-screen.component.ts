@@ -14,6 +14,7 @@ import { faShare } from '@fortawesome/free-solid-svg-icons/faShare';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons/faWhatsapp'
 import { Platform } from '@angular/cdk/platform';
 import { DomSanitizer } from '@angular/platform-browser';
+import { LoginServiceService } from 'src/app/services/login-service/login-service.service';
 
 const navigator = window.navigator as any;
 
@@ -41,11 +42,13 @@ export class HomeScreenComponent implements OnInit {
     private clipboard: Clipboard,
     private snackBar: MatSnackBar,
     private platform: Platform,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer,
+    private loginService: LoginServiceService) { }
 
   ngOnInit(): void {
     this.addLoginMessage();
     this.setIsMobile();
+    this.loginService.regenerateTokenIfExpired();
     if (this.storageService.checkKeyExistedOrNot("gameCode") && this.storageService.getDataFromStorage("gameCode") != undefined) {
       this.gameBackendService.checkForGameCodeAvailability(Number(this.storageService.getDataFromStorage("gameCode"))).subscribe(
         response => {

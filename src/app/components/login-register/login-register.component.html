@@ -6,6 +6,11 @@
                 <mat-card>
                     <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmitLogin()">
                         <div formGroupName="loginDetails" class="form-area">
+                            <div *ngIf="registerError" class="row">
+                                <div  class="alert alert-danger mt-1">
+                                    {{registerErrorMessage}}
+                                </div>
+                            </div>
                             <div class="row">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Enter Username/email</mat-label>

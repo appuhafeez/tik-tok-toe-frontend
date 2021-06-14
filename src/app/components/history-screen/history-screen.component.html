@@ -1,0 +1,18 @@
+<div>
+    <div *ngIf="historyData.length>0">
+        <div *ngFor="let tempHistory of historyData">
+            <mat-card>
+                <mat-card-subtitle>Game date: {{ tempHistory.dateOfGame | date: 'full' }} Game Id: {{tempHistory.id}}</mat-card-subtitle>
+                <mat-card-content *ngIf = "tempHistory.isGameTie" > This game is a tie with {{tempHistory.gameWith}} </mat-card-content>
+                <mat-card-content *ngIf = "tempHistory.winStatus" > You won the game over {{tempHistory.gameWith}} </mat-card-content>
+                <mat-card-content *ngIf = "tempHistory.winStatus!=null && !tempHistory.winStatus" > You lost the game over {{tempHistory.gameWith}} </mat-card-content>
+            </mat-card>
+            <br>
+        </div>
+    </div>
+    <div *ngIf="historyData.length<=0">
+        <div  class="alert alert-danger mt-1">
+            you dont have any history in last 30days will be displayed
+        </div>
+    </div>
+</div>

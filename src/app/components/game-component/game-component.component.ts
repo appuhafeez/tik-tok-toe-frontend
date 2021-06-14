@@ -7,6 +7,7 @@ import { GameBackendService } from 'src/app/services/game-backend/game-backend.s
 import { GameMoveRequest } from 'src/app/common/response/game-move-request';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { LoginServiceService } from 'src/app/services/login-service/login-service.service';
 
 
 const Xplayer: string = 'assets/images/ic_X.svg';
@@ -43,6 +44,7 @@ export class GameComponentComponent implements OnInit {
     private gameBackendService: GameBackendService,
     private router: Router,
     private snackBar: MatSnackBar,
+    private loginService: LoginServiceService,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -75,7 +77,7 @@ export class GameComponentComponent implements OnInit {
   }
 
   navigateToHome() {
-    //this.storageService.clearStore();
+    this.storageService.deleteKeyFromStore("gameCode");
     this.router.navigateByUrl("/home");
   }
 
@@ -102,7 +104,7 @@ export class GameComponentComponent implements OnInit {
               this.openSuccessDailogue("Better luck next time you lost the game", this.gameResponse.whoWonGame);
             }
           }
-          this.storageService.clearStore();
+          this.storageService.deleteKeyFromStore("gameCode");
         }
       })
     });
@@ -128,6 +130,7 @@ export class GameComponentComponent implements OnInit {
 
   processClick(position: string) {
     console.log(`clicked ${position} and current player: ${this.currentPlayer} game player: ${this.gamePlayer}`);
+    this.loginService.regenerateTokenIfExpired();
     if (this.gameResponse.gameData.spacesOccupiedPlayerIcons[position] === blankPlayer) {
       if (this.currentPlayer === this.gamePlayer) {
         let request: GameMoveRequest = new GameMoveRequest(this.gamePlayer, Number(position), Number(this.gameCode));

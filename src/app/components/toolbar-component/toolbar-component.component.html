@@ -1,11 +1,11 @@
 <p>
 	<mat-toolbar color="primary">
-	<p class="heading-tik-tok">Tik Tok Toe Game</p>
+	<p class="heading-tik-tok">Tik Tok Toe</p>
 		<span class="example-spacer"></span>
         <div *ngIf="!isAuthenticated" >  <button mat-raised-button class="button-center" routerLink="/login" >Login/Register</button></div>
         <div *ngIf="isAuthenticated" >  
-            <button mat-raised-button class="button-center" routerLink="/login" >History</button>
-            <button mat-raised-button class="button-center" onclick="logout()" >Logout</button>
+            <button mat-raised-button class="button-center"  style="margin-right:5px;" routerLink="/history" >History</button>
+            <button mat-raised-button class="button-center"  (click)="logout()" >Logout</button>
         </div>
      <div *ngIf="isSmallScreen">
         <button mat-button [matMenuTriggerFor]="menu"><span><fa-icon [icon]="faEllipsisV"></fa-icon></span></button>
@@ -13,14 +13,14 @@
             <a target="_blank" style="color: white;" [href]=sanitizeGithubUrl()><button mat-menu-item><span><fa-icon [icon]="faGithub"></fa-icon></span>Github</button></a>
             <a target="_blank" style="color: white;" [href]=sanitizeLinkedInUrl()><button mat-menu-item><span><fa-icon [icon]="faLinkedin"></fa-icon></span>LinkedIn</button></a>
             <a target="_blank" style="color: white;" [href]=sanitizeTwitterUrl()><button mat-menu-item><span><fa-icon [icon]="faTwitter"></fa-icon></span>Twitter</button></a>
-            <a target="_blank" style="color: white;" [href]=sanitizeLinkedInUrl()><button mat-menu-item><span><fa-icon [icon]="faInstagram"></fa-icon></span>Instagram</button></a>
+            <a target="_blank" style="color: white;" [href]=sanitizeInstagramUrl()><button mat-menu-item><span><fa-icon [icon]="faInstagram"></fa-icon></span>Instagram</button></a>
         </mat-menu>
      </div>
      <div *ngIf="!isSmallScreen">
             <a target="_blank" style="color: white;" [href]=sanitizeGithubUrl()><span><fa-icon [icon]="faGithub"></fa-icon></span></a>
             <a target="_blank" style="color: white;" [href]=sanitizeLinkedInUrl()><span><fa-icon [icon]="faLinkedin"></fa-icon></span></a>
             <a target="_blank" style="color: white;" [href]=sanitizeTwitterUrl()><span><fa-icon [icon]="faTwitter"></fa-icon></span></a>
-            <a target="_blank" style="color: white;" [href]=sanitizeLinkedInUrl()><span><fa-icon [icon]="faInstagram"></fa-icon></span></a>
+            <a target="_blank" style="color: white;" [href]=sanitizeInstagramUrl()><span><fa-icon [icon]="faInstagram"></fa-icon></span></a>
      </div>
     </mat-toolbar>
     

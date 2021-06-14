@@ -28,6 +28,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "angular-favicon": "^1.0.4",
     "font-awesome": "^4.7.0",
+    "jwt-decode": "^3.1.2",
     "ng-navigator-share": "^1.0.4",
     "rxjs": "~6.6.3",
     "sockjs-client": "^1.5.0",

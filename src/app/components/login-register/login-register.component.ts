@@ -8,7 +8,7 @@ import { RegisterResponse } from 'src/app/common/response/register-response';
 import { LoginRequest } from 'src/app/common/request/login-request';
 import { LoginResponse } from 'src/app/common/request/login-response';
 import { SessionStorageService } from '../../services/storage-service/session-storage.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-register',
@@ -26,7 +26,8 @@ export class LoginRegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private loginService:LoginServiceService,
     private storageService: SessionStorageService,
-    private router: Router) {
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
 
     this.registerErrorMessage="";
     this.loginFormGroup = this.formBuilder.group({
@@ -58,6 +59,13 @@ export class LoginRegisterComponent implements OnInit {
   get emailRegister(){return this.registerFormGroup.get('registerDetails.emailRegister');}
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const error = params['error'];
+      if(error!=null && error==="tokenExpired"){
+        this.registerError=true;
+        this.registerErrorMessage="Please relogin authentication expired";
+      }
+    });
   }
 
   onSubmitLogin(){
@@ -67,9 +75,10 @@ export class LoginRegisterComponent implements OnInit {
       this.loginFormGroup.markAllAsTouched();
       return;
     }
-
+    console.log("all conditions passed")
     let loginRequest = new LoginRequest();
-    loginRequest = this.loginFormGroup.controls['loginFormGroup'].value;
+    console.log(`all conditions passed ${loginRequest}`)
+    loginRequest = this.loginFormGroup.controls['loginDetails'].value;
 
     this.loginService.loginUser(loginRequest).subscribe(response => {
       if(response.status === 200){
@@ -83,7 +92,14 @@ export class LoginRegisterComponent implements OnInit {
         this.loginService.pushAuthToken(true);
         this.router.navigateByUrl("/home");
       }else{
-
+        console.log(`status :: ${response.status} , response body : ${response.body}`);
+      }
+    },
+    error=>{
+      console.log(`error ${error.status}`);
+      if(error.status === 403){
+        this.registerError=true;
+        this.registerErrorMessage="Username or password is incorrect";
       }
     });
   }
